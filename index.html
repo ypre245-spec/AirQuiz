@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirQuiz Admin | Key Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #4c1d95; /* Deep Violet */
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Shapes */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            filter: blur(50px);
+            opacity: 0.4;
+            animation: float 20s infinite linear;
+        }
+        
+        .shape-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #8b5cf6; border-radius: 50%; animation-duration: 25s; }
+        .shape-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: #ec4899; border-radius: 50%; animation-duration: 30s; animation-direction: reverse; }
+        .shape-3 { top: 40%; left: 40%; width: 30vw; height: 30vw; background: #3b82f6; border-radius: 50%; animation-duration: 20s; }
+
+        /* Floating Quiz Icons (Question marks, etc) */
+        .floating-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.05);
+            font-size: 4rem;
+            animation: floatIcon 15s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: rotate(0deg) translate(0, 0); }
+            50% { transform: rotate(180deg) translate(50px, 50px); }
+            100% { transform: rotate(360deg) translate(0, 0); }
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .input-focus-ring:focus-within {
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.5);
+            border-color: #a78bfa;
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+
+        /* Button Glow */
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+        }
+
+        /* History Item Hover */
+        .history-item {
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        .history-item:hover {
+            background: rgba(255,255,255,0.1);
+            border-left-color: #34d399; /* Emerald */
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4 sm:p-6">
+
+    <!-- Background Elements -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    
+    <!-- Floating Icons for "Quiz" vibe -->
+    <i class="fa-solid fa-question floating-icon" style="top: 10%; left: 10%;"></i>
+    <i class="fa-solid fa-check floating-icon" style="top: 20%; right: 15%; animation-delay: 1s;"></i>
+    <i class="fa-solid fa-lightbulb floating-icon" style="bottom: 15%; left: 20%; animation-delay: 2s;"></i>
+    <i class="fa-solid fa-trophy floating-icon" style="bottom: 10%; right: 10%; animation-delay: 3s;"></i>
+
+    <main class="w-full max-w-md my-auto relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-2xl mb-4 transform hover:scale-105 transition-transform duration-300 ring-4 ring-white/10">
+                <i class="fa-solid fa-bolt text-4xl text-white"></i>
+            </div>
+            <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200 tracking-tight">AirQuiz</h1>
+            <div class="flex items-center justify-center gap-2 mt-2 opacity-80">
+                <span class="px-2 py-0.5 rounded-full bg-indigo-500/30 text-[10px] font-bold border border-indigo-400/30 uppercase tracking-widest">Admin Tool</span>
+                <span class="text-sm font-medium">License Generator</span>
+            </div>
+        </div>
+
+        <!-- Main Generator Card -->
+        <div class="glass-card rounded-3xl p-1 shadow-2xl mb-6 overflow-hidden">
+            <!-- Card Header Decoration -->
+            <div class="h-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"></div>
+            
+            <div class="p-6 sm:p-8 space-y-6 bg-slate-900/40">
+                
+                <!-- Customer Field -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-indigo-200 ml-1">Client Reference</label>
+                    <div class="group relative flex items-center bg-slate-800/50 rounded-2xl border-2 border-transparent transition-all duration-200 hover:bg-slate-800/70 focus-within:bg-slate-800 input-focus-ring">
+                        <div class="pl-4 text-indigo-400 group-focus-within:text-indigo-300">
+                            <i class="fa-solid fa-building-user"></i>
+                        </div>
+                        <input type="text" id="customerName" 
+                            class="w-full bg-transparent border-none py-4 px-3 text-white placeholder-slate-400 focus:ring-0 text-sm font-medium"
+                            placeholder="Who is this for? (e.g. School District 9)">
+                    </div>
+                </div>
+
+                <!-- Machine ID Field -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-indigo-200 ml-1">Machine ID (HWID)</label>
+                    <div class="group relative flex items-center bg-slate-800/50 rounded-2xl border-2 border-transparent transition-all duration-200 hover:bg-slate-800/70 focus-within:bg-slate-800 input-focus-ring">
+                        <div class="pl-4 text-pink-400 group-focus-within:text-pink-300">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <input type="text" id="machineId" 
+                            class="w-full bg-transparent border-none py-4 px-3 text-white placeholder-slate-400 focus:ring-0 font-mono tracking-wide text-sm uppercase"
+                            placeholder="e.g. A1B2-C3D4">
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button onclick="generateLicense()" 
+                    class="w-full py-4 px-6 bg-gradient-to-r from-pink-500 to-violet-600 hover:from-pink-400 hover:to-violet-500 text-white font-bold text-lg rounded-2xl shadow-lg transform transition-all active:scale-95 btn-glow flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Generate Key</span>
+                </button>
+
+                <!-- Output Section -->
+                <div id="resultContainer" class="bg-slate-900/60 rounded-2xl p-4 border border-white/5 opacity-50 pointer-events-none transition-all duration-300 relative group">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-bold uppercase text-slate-400 tracking-wider">Generated License</span>
+                        <span id="statusMessage" class="text-[10px] font-bold text-emerald-400 opacity-0 transition-opacity">COPIED!</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="licenseKey" readonly 
+                            class="w-full bg-transparent border-none p-0 text-xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300 focus:ring-0"
+                            value="____-____-____-____">
+                        
+                        <button onclick="copyToClipboard('licenseKey')" id="copyBtn"
+                            class="h-10 w-10 flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- History Card -->
+        <div class="glass-card rounded-3xl p-6 shadow-xl">
+            <div class="flex items-center justify-between mb-4 px-2">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></div>
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wide">Recent Keys</h3>
+                </div>
+            </div>
+            
+            <div id="historyList" class="space-y-2 max-h-56 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center py-6 text-slate-400 text-sm font-medium">No keys generated yet.</div>
+            </div>
+        </div>
+
+        <div class="text-center mt-8 text-white/30 text-[10px] font-medium tracking-widest">
+            SECURE • ENCRYPTED • INTERNAL
+        </div>
+
+    </main>
+
+    <script>
+        // Salt must match the server exactly
+        const LICENSE_SALT = "AirQuiz_SaaS_SECRET_SALT_2026";
+        const STORAGE_KEY = "airquiz_history_v1";
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHistory();
+
+            // Auto-uppercase Machine ID input
+            const machineInput = document.getElementById('machineId');
+            machineInput.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
+            });
+        });
+
+        async function generateLicense() {
+            const hwidInput = document.getElementById('machineId');
+            const customerInput = document.getElementById('customerName');
+            const resultContainer = document.getElementById('resultContainer');
+            const licenseOutput = document.getElementById('licenseKey');
+            
+            const hwid = hwidInput.value.trim();
+            const customer = customerInput.value.trim();
+
+            // Validation
+            if (!hwid) {
+                shakeElement(hwidInput.parentElement);
+                hwidInput.focus();
+                return;
+            }
+
+            try {
+                // 1. Prepare data
+                const cleanHWID = hwid.toUpperCase();
+                const data = cleanHWID + LICENSE_SALT;
+
+                // 2. Hash using SHA-256 (Native Browser API)
+                const encoder = new TextEncoder();
+                const dataBuffer = encoder.encode(data);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
+
+                // 3. Convert ArrayBuffer to Hex String
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+                // 4. Format Key (First 16 chars, Uppercase)
+                const finalKey = hashHex.substring(0, 16).toUpperCase();
+
+                // 5. Update UI
+                resultContainer.classList.remove('opacity-50', 'pointer-events-none');
+                licenseOutput.value = finalKey;
+                
+                // 6. Save to History
+                addToHistory(cleanHWID, finalKey, customer);
+
+            } catch (error) {
+                console.error(error);
+                alert("Error generating key.");
+            }
+        }
+
+        function shakeElement(element) {
+            element.classList.add('translate-x-[-5px]');
+            setTimeout(() => {
+                element.classList.remove('translate-x-[-5px]');
+                element.classList.add('translate-x-[5px]');
+            }, 100);
+            setTimeout(() => {
+                element.classList.remove('translate-x-[5px]');
+            }, 200);
+        }
+
+        // --- History Logic ---
+
+        function addToHistory(machineId, key, customer) {
+            const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            
+            const newEntry = {
+                machineId: machineId,
+                key: key,
+                customer: customer || 'Anonymous',
+                timestamp: new Date().toLocaleString('en-US', { 
+                    month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+                })
+            };
+
+            // Remove existing entry with same key to prevent duplicates
+            // This ensures if you generate the same key again, it bumps to the top with new time
+            const existingIndex = history.findIndex(item => item.key === key);
+            if (existingIndex !== -1) {
+                history.splice(existingIndex, 1);
+            }
+
+            // Add to top, limit to 10
+            history.unshift(newEntry);
+            if (history.length > 10) history.pop();
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const historyList = document.getElementById('historyList');
+            const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+            if (history.length === 0) {
+                historyList.innerHTML = '<div class="text-center py-6 text-slate-400 text-sm font-medium">No keys generated yet.</div>';
+                return;
+            }
+
+            historyList.innerHTML = history.map((item, index) => `
+                <div class="history-item bg-white/5 rounded-xl p-3 flex items-center justify-between group">
+                    <div class="flex-1 min-w-0 pr-3">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-white truncate">${escapeHtml(item.customer)}</span>
+                            <span class="text-[9px] text-white/40 uppercase font-bold tracking-wide">${item.timestamp}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                             <span class="bg-indigo-500/20 text-indigo-300 text-[10px] px-1.5 py-0.5 rounded font-mono">${item.machineId}</span>
+                             <i class="fa-solid fa-arrow-right text-[8px] text-white/20"></i>
+                             <span class="text-emerald-400 text-xs font-mono font-bold tracking-wide">${item.key}</span>
+                        </div>
+                    </div>
+                    <button onclick="copyHistoryKey('${item.key}', this)" 
+                        class="h-8 w-8 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/20 text-white/60 hover:text-white transition-all">
+                        <i class="fa-regular fa-copy text-xs"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // --- Utilities ---
+
+        function copyToClipboard(elementId) {
+            const copyText = document.getElementById(elementId);
+            const btnIcon = document.querySelector("#copyBtn i");
+            const status = document.getElementById('statusMessage');
+            
+            if (copyText.value === "____-____-____-____") return;
+
+            // Visual select (for UI feedback)
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            
+            // Format message
+            const message = `Here is your AirQuiz license key:\n${copyText.value}\n\nThank you for choosing AirQuiz!`;
+            
+            doCopy(message, btnIcon, status);
+        }
+
+        function copyHistoryKey(key, btnElement) {
+            const icon = btnElement.querySelector('i');
+            // Format message
+            const message = `Here is your AirQuiz license key:\n${key}\n\nThank you for choosing AirQuiz!`;
+            doCopy(message, icon, null);
+        }
+
+        function doCopy(text, iconElement, statusElement) {
+            // Use textarea to preserve newlines
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (!successful) throw new Error("Copy command failed");
+                
+                // Icon Feedback
+                const originalClass = iconElement.className;
+                iconElement.className = "fa-solid fa-check text-emerald-400";
+                
+                // Text Feedback (if applicable)
+                if(statusElement) statusElement.style.opacity = '1';
+
+                setTimeout(() => {
+                    iconElement.className = "fa-regular fa-copy";
+                    if(statusElement) statusElement.style.opacity = '0';
+                }, 1500);
+
+            } catch (err) {
+                console.error("Copy failed", err);
+                alert("Please copy manually.");
+            }
+            
+            document.body.removeChild(tempInput);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Keys
+        document.getElementById('machineId').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') generateLicense();
+        });
+        document.getElementById('customerName').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') document.getElementById('machineId').focus();
+        });
+    </script>
+</body>
+</html>
